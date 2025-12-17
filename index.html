@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Corus HR – Getting Started</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Corus HR – User Onboarding Flow</h1>
+
+<div class="mermaid">
+flowchart TD
+A[Purchase Completed] --> B[Login to Corus HR]
+B --> C[Company Setup]
+C --> D[User & Role Setup]
+D --> E[Upload Master Data]
+E --> F[Test Payroll / HR Process]
+F --> G[Go Live]
+</div>
+
+<script>
+  mermaid.initialize({ startOnLoad: true });
+</script>
+
+</body>
+</html>

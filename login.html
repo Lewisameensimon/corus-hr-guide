@@ -2,40 +2,40 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Corus HR – Login Help</title>
+  <title>Corus HR – Login Flow</title>
+
+  <!-- Mermaid -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 30px;
-      background-color: #f9f9f9;
+      background: #f4f6f8;
     }
 
     h1, h2 {
       color: #2c3e50;
     }
 
-    .card {
+    .container {
       background: #ffffff;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 25px;
     }
 
-    ul {
-      padding-left: 20px;
+    .explain {
+      margin-top: 20px;
     }
 
-    li {
-      margin: 8px 0;
+    .step {
+      margin-bottom: 18px;
     }
 
-    .note {
-      background: #eef6ff;
-      padding: 12px;
-      border-left: 4px solid #0078d4;
-      margin-top: 10px;
+    .step b {
+      color: #0078d4;
     }
 
     a {
@@ -51,70 +51,81 @@
 </head>
 <body>
 
-<h1>Corus HR – Login Guide</h1>
+<h1>Corus HR – Login Process</h1>
 
-<!-- LOGIN -->
-<div class="card">
-  <h2>1. Login to Corus HR</h2>
+<!-- FLOW CHART -->
+<div class="container">
+  <h2>Login Flow</h2>
 
-  <p>
-    Users can log in to Corus HR using the credentials shared after purchase or onboarding.
-  </p>
-
-  <ul>
-    <li>Enter your <b>Username / Email</b></li>
-    <li>Enter your <b>Password</b></li>
-    <li>Click the <b>Login</b> button</li>
-  </ul>
-
-  <div class="note">
-    After successful login, you will be redirected to the <b>Dashboard</b>.
+  <div class="mermaid">
+    flowchart TD
+      A[Open Corus HR] --> B[Enter Username & Password]
+      B --> C{Credentials Valid?}
+      C -- Yes --> D[Login Successful]
+      D --> E[Redirect to Dashboard]
+      C -- No --> F[Show Error Message]
+      F --> G[Forgot Password?]
+      G -- Yes --> H[Request Password Reset]
+      H --> I[Reset Link Sent to Email]
+      I --> J[Set New Password]
+      J --> B
   </div>
 </div>
 
-<!-- FORGOT PASSWORD -->
-<div class="card">
-  <h2>2. Forgot Password</h2>
+<!-- EXPLANATION -->
+<div class="container explain">
+  <h2>Step-by-Step Explanation</h2>
 
-  <p>
-    If you are unable to remember your password, use the <b>Forgot Password</b> option.
-  </p>
-
-  <ul>
-    <li>Click <b>Forgot Password</b> on the login screen</li>
-    <li>Enter your registered <b>Email ID</b></li>
-    <li>Click <b>Submit</b></li>
-  </ul>
-
-  <div class="note">
-    A password reset link will be sent to your registered email address.
+  <div class="step">
+    <b>1. Open Corus HR</b><br>
+    User opens the Corus HR application or web portal.
   </div>
-</div>
 
-<!-- RESET PASSWORD -->
-<div class="card">
-  <h2>3. Reset Password</h2>
+  <div class="step">
+    <b>2. Enter Username & Password</b><br>
+    User enters the login credentials shared during onboarding.
+  </div>
 
-  <p>
-    After clicking the reset link from your email:
-  </p>
+  <div class="step">
+    <b>3. Credentials Validation</b><br>
+    System verifies the entered username and password.
+  </div>
 
-  <ul>
-    <li>Enter a <b>New Password</b></li>
-    <li>Confirm the <b>New Password</b></li>
-    <li>Click <b>Reset Password</b></li>
-  </ul>
+  <div class="step">
+    <b>4. Login Successful</b><br>
+    If credentials are valid, login is successful.
+  </div>
 
-  <div class="note">
-    Once reset is successful, you can log in using the new password.
+  <div class="step">
+    <b>5. Redirect to Dashboard</b><br>
+    User is redirected to the Corus HR Dashboard.
+  </div>
+
+  <div class="step">
+    <b>6. Invalid Credentials</b><br>
+    If credentials are incorrect, an error message is shown.
+  </div>
+
+  <div class="step">
+    <b>7. Forgot Password</b><br>
+    User can click <i>Forgot Password</i> if they don’t remember the password.
+  </div>
+
+  <div class="step">
+    <b>8. Password Reset</b><br>
+    A reset link is sent to the registered email. User sets a new password and logs in again.
   </div>
 </div>
 
 <!-- NAVIGATION -->
-<div class="card">
-  👉 <a href="dashboard.html">Go to Dashboard Guide</a><br><br>
+<div class="container">
+  👉 <a href="dashboard.html">Go to Dashboard Flow</a><br><br>
   👉 <a href="index.html">Back to Overview</a>
 </div>
+
+<script>
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
 </body>
 </html>

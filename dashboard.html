@@ -2,33 +2,121 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Corus HR – Dashboard</title>
+  <title>Corus HR – Dashboard Flow</title>
+
+  <!-- Mermaid -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 30px;
+      background: #f4f6f8;
     }
+
+    h1, h2 {
+      color: #2c3e50;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 25px;
+    }
+
+    .explain {
+      margin-top: 20px;
+    }
+
+    .step {
+      margin-bottom: 18px;
+    }
+
+    .step b {
+      color: #0078d4;
+    }
+
     a {
       color: #0078d4;
       text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
-<h1>Dashboard</h1>
+<h1>Corus HR – Dashboard Process</h1>
 
-<p>
-The dashboard provides a quick view of:
-</p>
+<!-- FLOW CHART -->
+<div class="container">
+  <h2>Dashboard Flow</h2>
 
-<ul>
-  <li>Employee summary</li>
-  <li>Payroll status</li>
-  <li>HR notifications</li>
-</ul>
+  <div class="mermaid">
+    flowchart TD
+      A[User Logged In] --> B[Load Dashboard]
+      B --> C[View Profile Summary]
+      B --> D[View Announcements]
+      B --> E[View Leave Balance]
+      B --> F[View Timesheet Status]
+      B --> G[Access Management Process]
+      G --> H[Recruitment]
+      G --> I[Leave Management]
+      G --> J[Employee Loan]
+      G --> K[Disciplinary]
+      G --> L[Separation / Exit]
+  </div>
+</div>
 
-👉 <a href="index.html">Back to Overview</a>
+<!-- EXPLANATION -->
+<div class="container explain">
+  <h2>Step-by-Step Explanation</h2>
+
+  <div class="step">
+    <b>1. User Logged In</b><br>
+    User successfully logs in to Corus HR.
+  </div>
+
+  <div class="step">
+    <b>2. Load Dashboard</b><br>
+    System loads the dashboard with role-based access.
+  </div>
+
+  <div class="step">
+    <b>3. Profile Summary</b><br>
+    User can view basic employee details and designation.
+  </div>
+
+  <div class="step">
+    <b>4. Announcements</b><br>
+    Company announcements and HR updates are displayed.
+  </div>
+
+  <div class="step">
+    <b>5. Leave & Timesheet</b><br>
+    User can view leave balance and timesheet status.
+  </div>
+
+  <div class="step">
+    <b>6. Management Process</b><br>
+    User can access recruitment, leave, loan, disciplinary, and separation modules.
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<div class="container">
+  👉 <a href="management.html">Go to Management Process</a><br><br>
+  👉 <a href="index.html">Back to Overview</a>
+</div>
+
+<script>
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
 </body>
 </html>

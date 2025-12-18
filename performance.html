@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Corus HR – Performance Process</title>
+
+  <!-- Mermaid -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+    }
+
+    .page {
+      max-width: 1150px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    header {
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      color: #0B3C5D;
+      margin: 0;
+    }
+
+    header p {
+      color: #666;
+      margin-top: 6px;
+    }
+
+    .breadcrumb {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #0B3C5D;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 25px;
+    }
+
+    .step {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .step-number {
+      min-width: 28px;
+      height: 28px;
+      background: #0B3C5D;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+    }
+
+    .nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      padding: 12px 22px;
+      background: #0B3C5D;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+    }
+
+    .nav a.secondary {
+      background: #f1f1f1;
+      color: #333;
+      border-color: #ccc;
+    }
+
+    .nav a:hover {
+      opacity: 0.92;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header>
+    <div class="breadcrumb">Overview → Performance Flow</div>
+    <h1>Corus HR – Performance Process</h1>
+    <p>Goal setting, review, and appraisal workflow</p>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <div class="layout">
+
+    <!-- FLOW -->
+    <div class="card">
+      <h2>Performance Flow</h2>
+
+      <div class="mermaid">
+flowchart TD
+  A[Employee Login]:::start --> B[View Performance Module]:::input
+  B --> C[Set Goals / KPIs]:::input
+  C --> D[Manager Reviews Goals]:::input
+  D --> E{Goals Approved?}:::decision
+
+  E -- Yes --> F[Goals Finalized]:::success
+  F --> G[Self Appraisal]:::input
+  G --> H[Manager Evaluation]:::input
+  H --> I{Final Rating Approved?}:::decision
+
+  I -- Yes --> J[Performance Finalized]:::success
+  J --> K[Notify Employee]:::success
+  K --> L[Store Performance Record]:::success
+
+  I -- No --> M[Rework / Feedback Loop]:::error
+  M --> G
+
+  E -- No --> N[Goal Revision Requested]:::error
+  N --> C
+
+  classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
+  classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
+  classDef decision fill:#C9A227,color:#000000,stroke:#8E6F1F
+  classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
+  classDef error fill:#7A1F1F,color:#ffffff,stroke:#D4AF37
+      </div>
+    </div>
+
+    <!-- EXPLANATION -->
+    <div class="card">
+      <h2>Step-by-Step Explanation</h2>
+
+      <div class="step"><div class="step-number">1</div>Employee logs in to Corus HR.</div>
+      <div class="step"><div class="step-number">2</div>Employee opens Performance module.</div>
+      <div class="step"><div class="step-number">3</div>Employee sets goals and KPIs.</div>
+      <div class="step"><div class="step-number">4</div>Manager reviews and approves goals.</div>
+      <div class="step"><div class="step-number">5</div>Employee submits self appraisal.</div>
+      <div class="step"><div class="step-number">6</div>Manager evaluates performance.</div>
+      <div class="step"><div class="step-number">7</div>Final rating is approved.</div>
+      <div class="step"><div class="step-number">8</div>Employee receives notification and records are stored.</div>
+    </div>
+
+  </div>
+
+  <!-- NAVIGATION -->
+  <div class="card">
+    <div class="nav">
+      <a href="leave.html">Leave Flow</a>
+      <a href="index.html" class="secondary">Back to Overview</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "base",
+    themeVariables: {
+      primaryColor: "#0B3C5D",
+      primaryTextColor: "#ffffff",
+      primaryBorderColor: "#D4AF37",
+      lineColor: "#0B3C5D",
+      fontFamily: "Segoe UI, Arial",
+      fontSize: "14px"
+    }
+  });
+</script>
+
+</body>
+</html>

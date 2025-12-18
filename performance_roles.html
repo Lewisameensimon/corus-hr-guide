@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Corus HR – Performance Processes</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #0B3C5D;
+      margin: 0;
+    }
+
+    p {
+      color: #666;
+      margin-top: 6px;
+    }
+
+    .breadcrumb {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #0B3C5D;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav a {
+      padding: 12px 22px;
+      background: #0B3C5D;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+    }
+
+    .nav a.secondary {
+      background: #f1f1f1;
+      color: #333;
+      border-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="breadcrumb">Overview → Performance → Role Based Flow</div>
+  <h1>Corus HR – Performance Management</h1>
+  <p>Employee, Manager, and HR role-based workflows</p>
+
+  <div class="grid">
+
+    <!-- EMPLOYEE FLOW -->
+    <div class="card">
+      <h2>Employee (User) Process</h2>
+
+      <div class="mermaid">
+flowchart LR
+  A[Login] --> B[View Performance Cycle]
+  B --> C[Set Goals / KPIs]
+  C --> D[Submit Goals]
+  D --> E[Self Appraisal]
+  E --> F[Submit Self Review]
+      </div>
+    </div>
+
+    <!-- MANAGER FLOW -->
+    <div class="card">
+      <h2>Manager Process</h2>
+
+      <div class="mermaid">
+flowchart LR
+  A[Login] --> B[View Team Performance]
+  B --> C[Review Employee Goals]
+  C --> D{Approve Goals?}
+  D -- Yes --> E[Goals Approved]
+  D -- No --> F[Request Goal Revision]
+  E --> G[Evaluate Performance]
+  G --> H[Provide Rating & Feedback]
+  H --> I[Submit Review]
+      </div>
+    </div>
+
+    <!-- HR FLOW -->
+    <div class="card">
+      <h2>HR Process</h2>
+
+      <div class="mermaid">
+flowchart LR
+  A[Login] --> B[Configure Performance Cycle]
+  B --> C[Define Rating Scales]
+  C --> D[Monitor Appraisal Status]
+  D --> E[Moderation / Calibration]
+  E --> F[Finalize Ratings]
+  F --> G[Publish Results]
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NAV -->
+  <div class="card">
+    <div class="nav">
+      <a href="recruitment.html">Recruitment</a>
+      <a href="index.html" class="secondary">Back to Overview</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "base",
+    themeVariables: {
+      primaryColor: "#0B3C5D",
+      primaryTextColor: "#ffffff",
+      primaryBorderColor: "#D4AF37",
+      lineColor: "#0B3C5D",
+      fontFamily: "Segoe UI, Arial",
+      fontSize: "14px"
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,130 +1,201 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Corus HR – Login Flow</title>
+  <title>Corus HR – Login Process</title>
 
   <!-- Mermaid -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 30px;
+      font-family: "Segoe UI", Arial, sans-serif;
       background: #f4f6f8;
+      margin: 0;
     }
 
-    h1, h2 {
-      color: #2c3e50;
+    .page {
+      max-width: 1150px;
+      margin: auto;
+      padding: 30px;
     }
 
-    .container {
-      background: #ffffff;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    header {
       margin-bottom: 25px;
     }
 
-    .explain {
-      margin-top: 20px;
+    h1 {
+      color: #0B3C5D;
+      margin: 0;
+    }
+
+    header p {
+      color: #666;
+      margin-top: 6px;
+    }
+
+    .breadcrumb {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #0B3C5D;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 25px;
     }
 
     .step {
-      margin-bottom: 18px;
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      line-height: 1.5;
     }
 
-    .step b {
-      color: #0078d4;
-    }
-
-    a {
-      color: #0078d4;
-      text-decoration: none;
+    .step-number {
+      min-width: 28px;
+      height: 28px;
+      background: #0B3C5D;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
       font-weight: bold;
+      border: 2px solid #D4AF37;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      padding: 12px 22px;
+      background: #0B3C5D;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+    }
+
+    .nav a.secondary {
+      background: #f1f1f1;
+      color: #333;
+      border-color: #ccc;
+    }
+
+    .nav a:hover {
+      opacity: 0.92;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
-<h1>Corus HR – Login Process</h1>
+<div class="page">
 
-<!-- FLOW CHART -->
-<div class="container">
-  <h2>Login Flow</h2>
+  <!-- HEADER -->
+  <header>
+    <div class="breadcrumb">Overview → Login Flow</div>
+    <h1>Corus HR – Login Process</h1>
+    <p>User authentication and access workflow</p>
+  </header>
 
-  <div class="mermaid">
-    flowchart TD
-      A[Open Corus HR] --> B[Enter Username & Password]
-      B --> C{Credentials Valid?}
-      C -- Yes --> D[Login Successful]
-      D --> E[Redirect to Dashboard]
-      C -- No --> F[Show Error Message]
-      F --> G[Forgot Password?]
-      G -- Yes --> H[Request Password Reset]
-      H --> I[Reset Link Sent to Email]
-      I --> J[Set New Password]
-      J --> B
-  </div>
-</div>
+  <!-- MAIN CONTENT -->
+  <div class="layout">
 
-<!-- EXPLANATION -->
-<div class="container explain">
-  <h2>Step-by-Step Explanation</h2>
+    <!-- FLOW -->
+    <div class="card">
+      <h2>Login Flow</h2>
 
-  <div class="step">
-    <b>1. Open Corus HR</b><br>
-    User opens the Corus HR application or web portal.
-  </div>
+      <div class="mermaid">
+flowchart TD
+  A[Open Corus HR]:::start --> B[Enter Username & Password]:::input
+  B --> C{Credentials Valid?}:::decision
 
-  <div class="step">
-    <b>2. Enter Username & Password</b><br>
-    User enters the login credentials shared during onboarding.
-  </div>
+  C -- Yes --> D[Login Successful]:::success
+  D --> E[Redirect to Dashboard]:::success
 
-  <div class="step">
-    <b>3. Credentials Validation</b><br>
-    System verifies the entered username and password.
-  </div>
+  C -- No --> F[Show Error Message]:::error
+  F --> G{Forgot Password?}:::decision
 
-  <div class="step">
-    <b>4. Login Successful</b><br>
-    If credentials are valid, login is successful.
-  </div>
+  G -- Yes --> H[Request Password Reset]:::input
+  H --> I[Reset Link Sent to Email]:::success
+  I --> J[Set New Password]:::input
+  J --> B
 
-  <div class="step">
-    <b>5. Redirect to Dashboard</b><br>
-    User is redirected to the Corus HR Dashboard.
-  </div>
+  G -- No --> B
 
-  <div class="step">
-    <b>6. Invalid Credentials</b><br>
-    If credentials are incorrect, an error message is shown.
-  </div>
+  classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
+  classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
+  classDef decision fill:#C9A227,color:#000000,stroke:#8E6F1F
+  classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
+  classDef error fill:#7A1F1F,color:#ffffff,stroke:#D4AF37
+      </div>
+    </div>
 
-  <div class="step">
-    <b>7. Forgot Password</b><br>
-    User can click <i>Forgot Password</i> if they don’t remember the password.
+    <!-- EXPLANATION -->
+    <div class="card">
+      <h2>Step-by-Step Explanation</h2>
+
+      <div class="step"><div class="step-number">1</div>User opens the Corus HR application.</div>
+      <div class="step"><div class="step-number">2</div>User enters username and password.</div>
+      <div class="step"><div class="step-number">3</div>System validates credentials.</div>
+      <div class="step"><div class="step-number">4</div>If valid, login is successful.</div>
+      <div class="step"><div class="step-number">5</div>User is redirected to the dashboard.</div>
+      <div class="step"><div class="step-number">6</div>If invalid, an error message is shown.</div>
+      <div class="step"><div class="step-number">7</div>User can request password reset.</div>
+      <div class="step"><div class="step-number">8</div>User sets a new password and logs in again.</div>
+    </div>
+
   </div>
 
-  <div class="step">
-    <b>8. Password Reset</b><br>
-    A reset link is sent to the registered email. User sets a new password and logs in again.
+  <!-- NAVIGATION -->
+  <div class="card">
+    <div class="nav">
+      <a href="dashboard.html">Dashboard Flow</a>
+      <a href="index.html" class="secondary">Back to Overview</a>
+    </div>
   </div>
-</div>
 
-<!-- NAVIGATION -->
-<div class="container">
-  👉 <a href="dashboard.html">Go to Dashboard Flow</a><br><br>
-  👉 <a href="index.html">Back to Overview</a>
 </div>
 
 <script>
-  mermaid.initialize({ startOnLoad: true });
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "base",
+    themeVariables: {
+      primaryColor: "#0B3C5D",
+      primaryTextColor: "#ffffff",
+      primaryBorderColor: "#D4AF37",
+      lineColor: "#0B3C5D",
+      fontFamily: "Segoe UI, Arial",
+      fontSize: "14px"
+    }
+  });
 </script>
 
 </body>

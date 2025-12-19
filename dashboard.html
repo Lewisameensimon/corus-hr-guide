@@ -1,121 +1,195 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Corus HR – Dashboard Flow</title>
+  <title>Corus HR – Dashboard Process</title>
 
   <!-- Mermaid -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 30px;
+      font-family: "Segoe UI", Arial, sans-serif;
       background: #f4f6f8;
+      margin: 0;
     }
 
-    h1, h2 {
-      color: #2c3e50;
+    .page {
+      max-width: 1150px;
+      margin: auto;
+      padding: 30px;
     }
 
-    .container {
-      background: #ffffff;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    header {
       margin-bottom: 25px;
     }
 
-    .explain {
-      margin-top: 20px;
+    h1 {
+      color: #0B3C5D;
+      margin: 0;
+    }
+
+    header p {
+      color: #666;
+      margin-top: 6px;
+    }
+
+    .breadcrumb {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #0B3C5D;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 25px;
     }
 
     .step {
-      margin-bottom: 18px;
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      line-height: 1.5;
     }
 
-    .step b {
-      color: #0078d4;
-    }
-
-    a {
-      color: #0078d4;
-      text-decoration: none;
+    .step-number {
+      min-width: 28px;
+      height: 28px;
+      background: #0B3C5D;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
       font-weight: bold;
+      border: 2px solid #D4AF37;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      padding: 12px 22px;
+      background: #0B3C5D;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+    }
+
+    .nav a.secondary {
+      background: #f1f1f1;
+      color: #333;
+      border-color: #ccc;
+    }
+
+    .nav a:hover {
+      opacity: 0.92;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
-<h1>Corus HR – Dashboard Process</h1>
+<div class="page">
 
-<!-- FLOW CHART -->
-<div class="container">
-  <h2>Dashboard Flow</h2>
+  <!-- HEADER -->
+  <header>
+    <div class="breadcrumb">Overview → Dashboard Flow</div>
+    <h1>Corus HR – Dashboard Process</h1>
+    <p>Centralized employee overview and quick access modules</p>
+  </header>
 
-  <div class="mermaid">
-    flowchart TD
-      A[User Logged In] --> B[Load Dashboard]
-      B --> C[View Profile Summary]
-      B --> D[View Announcements]
-      B --> E[View Leave Balance]
-      B --> F[View Timesheet Status]
-      B --> G[Access Management Process]
-      G --> H[Recruitment]
-      G --> I[Leave Management]
-      G --> J[Employee Loan]
-      G --> K[Disciplinary]
-      G --> L[Separation / Exit]
+  <!-- MAIN CONTENT -->
+  <div class="layout">
+
+    <!-- FLOW -->
+    <div class="card">
+      <h2>Dashboard Flow</h2>
+
+      <div class="mermaid">
+flowchart TD
+  A[User Logged In]:::start --> B[Load Dashboard]:::input
+
+  B --> C[View Profile Summary]:::success
+  B --> D[View Announcements]:::success
+  B --> E[View Leave Balance]:::success
+  B --> F[View Timesheet Status]:::success
+
+  B --> G[Access Management Modules]:::input
+  G --> H[Recruitment]:::input
+  G --> I[Leave Management]:::input
+  G --> J[Employee Loan]:::input
+  G --> K[Disciplinary]:::input
+  G --> L[Separation / Exit]:::input
+
+  classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
+  classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
+  classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
+      </div>
+    </div>
+
+    <!-- EXPLANATION -->
+    <div class="card">
+      <h2>Step-by-Step Explanation</h2>
+
+      <div class="step"><div class="step-number">1</div>User successfully logs in.</div>
+      <div class="step"><div class="step-number">2</div>Dashboard loads with role-based access.</div>
+      <div class="step"><div class="step-number">3</div>User views profile summary.</div>
+      <div class="step"><div class="step-number">4</div>Announcements and HR updates are shown.</div>
+      <div class="step"><div class="step-number">5</div>Leave balance and timesheet status are displayed.</div>
+      <div class="step"><div class="step-number">6</div>User accesses management-related modules.</div>
+    </div>
+
   </div>
-</div>
 
-<!-- EXPLANATION -->
-<div class="container explain">
-  <h2>Step-by-Step Explanation</h2>
-
-  <div class="step">
-    <b>1. User Logged In</b><br>
-    User successfully logs in to Corus HR.
+  <!-- NAVIGATION -->
+  <div class="card">
+    <div class="nav">
+      <a href="management.html">Management Process</a>
+      <a href="index.html" class="secondary">Back to Overview</a>
+    </div>
   </div>
 
-  <div class="step">
-    <b>2. Load Dashboard</b><br>
-    System loads the dashboard with role-based access.
-  </div>
-
-  <div class="step">
-    <b>3. Profile Summary</b><br>
-    User can view basic employee details and designation.
-  </div>
-
-  <div class="step">
-    <b>4. Announcements</b><br>
-    Company announcements and HR updates are displayed.
-  </div>
-
-  <div class="step">
-    <b>5. Leave & Timesheet</b><br>
-    User can view leave balance and timesheet status.
-  </div>
-
-  <div class="step">
-    <b>6. Management Process</b><br>
-    User can access recruitment, leave, loan, disciplinary, and separation modules.
-  </div>
-</div>
-
-<!-- NAVIGATION -->
-<div class="container">
-  👉 <a href="management.html">Go to Management Process</a><br><br>
-  👉 <a href="index.html">Back to Overview</a>
 </div>
 
 <script>
-  mermaid.initialize({ startOnLoad: true });
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "base",
+    themeVariables: {
+      primaryColor: "#0B3C5D",
+      primaryTextColor: "#ffffff",
+      primaryBorderColor: "#D4AF37",
+      lineColor: "#0B3C5D",
+      fontFamily: "Segoe UI, Arial",
+      fontSize: "14px"
+    }
+  });
 </script>
 
 </body>

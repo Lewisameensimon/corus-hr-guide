@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Corus HR – Login Process</title>
+  <title>Corus HR – Login & Authentication</title>
 
   <!-- Mermaid -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
@@ -20,24 +20,35 @@
       padding: 30px;
     }
 
-    header {
-      margin-bottom: 25px;
-    }
-
-    h1 {
+    h1, h2 {
       color: #0B3C5D;
-      margin: 0;
+      margin-top: 0;
     }
 
-    header p {
-      color: #666;
-      margin-top: 6px;
+    p {
+      font-size: 15px;
+      line-height: 1.6;
     }
 
     .breadcrumb {
       font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .breadcrumb a {
+      color: #0078d4;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .breadcrumb span {
       color: #888;
-      margin-bottom: 10px;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 25px;
     }
 
     .card {
@@ -48,21 +59,32 @@
       margin-bottom: 25px;
     }
 
-    h2 {
-      margin-top: 0;
-      color: #0B3C5D;
-    }
-
     .layout {
       display: grid;
       grid-template-columns: 1.1fr 1fr;
       gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .layout .card {
+      margin-bottom: 0;
+    }
+
+    .stack > .card {
+      margin-bottom: 15px;
+    }
+
+    .section-note {
+      font-size: 13px;
+      color: #666;
+      margin-top: -10px;
+      margin-bottom: 15px;
     }
 
     .step {
       display: flex;
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       line-height: 1.5;
     }
 
@@ -87,13 +109,14 @@
     }
 
     .nav a {
-      padding: 12px 22px;
+      padding: 10px 18px;
       background: #0B3C5D;
       color: #ffffff;
       text-decoration: none;
       border-radius: 10px;
       font-weight: bold;
       border: 2px solid #D4AF37;
+      font-size: 14px;
     }
 
     .nav a.secondary {
@@ -102,8 +125,11 @@
       border-color: #ccc;
     }
 
-    .nav a:hover {
-      opacity: 0.92;
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin: 40px 0 10px;
     }
 
     @media (max-width: 900px) {
@@ -113,73 +139,113 @@
     }
   </style>
 </head>
+
 <body>
 
 <div class="page">
 
   <!-- HEADER -->
   <header>
-    <div class="breadcrumb">Overview → Login Flow</div>
-    <h1>Corus HR – Login Process</h1>
-    <p>User authentication and access workflow</p>
+    <div class="breadcrumb">
+      <a href="index.html">Overview</a> → <span>Login & Authentication</span>
+    </div>
+
+    <h1>Corus HR – Login & Authentication</h1>
+    <p>Secure access control for Corus HR users</p>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- META -->
+  <div class="meta">
+    <b>Module:</b> Login |
+    <b>Audience:</b> Admin, Manager, Employee |
+    <b>Last Updated:</b> Dec 2025
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="card">
+    <h2>Overview</h2>
+    <p>
+      The Login module authenticates users and controls access to Corus HR
+      based on assigned roles, permissions, and account status.
+    </p>
+  </div>
+
+  <!-- PREREQUISITES -->
   <div class="layout">
 
-    <!-- FLOW -->
+    <!-- LEFT: FLOW -->
     <div class="card">
-      <h2>Login Flow</h2>
+      <h2>Login – Prerequisites</h2>
+      <div class="section-note">(Admin Configuration)</div>
 
       <div class="mermaid">
 flowchart TD
-  A[Open Corus HR]:::start --> B[Enter Username & Password]:::input
-  B --> C{Credentials Valid?}:::decision
-
-  C -- Yes --> D[Login Successful]:::success
-  D --> E[Redirect to Dashboard]:::success
-
-  C -- No --> F[Show Error Message]:::error
-  F --> G{Forgot Password?}:::decision
-
-  G -- Yes --> H[Request Password Reset]:::input
-  H --> I[Reset Link Sent to Email]:::success
-  I --> J[Set New Password]:::input
-  J --> B
-
-  G -- No --> B
+  A[Employee Record Created]:::success --> B[User Account Enabled]:::input
+  B --> C[Role Assigned]:::input
+  C --> D[Access Permissions Configured]:::input
+  D --> E[Login Enabled]:::start
 
   classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
   classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
-  classDef decision fill:#C9A227,color:#000000,stroke:#8E6F1F
   classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
-  classDef error fill:#7A1F1F,color:#ffffff,stroke:#D4AF37
       </div>
     </div>
 
-    <!-- EXPLANATION -->
-    <div class="card">
-      <h2>Step-by-Step Explanation</h2>
-
-      <div class="step"><div class="step-number">1</div>User opens the Corus HR application.</div>
-      <div class="step"><div class="step-number">2</div>User enters username and password.</div>
-      <div class="step"><div class="step-number">3</div>System validates credentials.</div>
-      <div class="step"><div class="step-number">4</div>If valid, login is successful.</div>
-      <div class="step"><div class="step-number">5</div>User is redirected to the dashboard.</div>
-      <div class="step"><div class="step-number">6</div>If invalid, an error message is shown.</div>
-      <div class="step"><div class="step-number">7</div>User can request password reset.</div>
-      <div class="step"><div class="step-number">8</div>User sets a new password and logs in again.</div>
+    <!-- RIGHT: STACK -->
+    <div class="stack">
+      <div class="card">
+        <h2>Prerequisite Steps</h2>
+        <div class="step"><div class="step-number">1</div>Employee master created</div>
+        <div class="step"><div class="step-number">2</div>User login account enabled</div>
+        <div class="step"><div class="step-number">3</div>Role and permissions assigned</div>
+      </div>
     </div>
 
   </div>
 
-  <!-- NAVIGATION -->
+  <!-- LOGIN FLOW -->
+  <div class="layout">
+
+    <!-- LEFT: FLOW -->
+    <div class="card">
+      <h2>Login Flow</h2>
+      <div class="section-note">(User Authentication)</div>
+
+      <div class="mermaid">
+flowchart TD
+  A[User Opens Login Page] --> B[Enter Username & Password]
+  B --> C{Credentials Valid?}
+  C -- Yes --> D[Authentication Success]
+  D --> E[Redirect to Dashboard]
+  C -- No --> F[Error Message Displayed]
+      </div>
+    </div>
+
+    <!-- RIGHT: STEPS -->
+    <div class="stack">
+      <div class="card">
+        <h2>Step-by-Step</h2>
+        <div class="step"><div class="step-number">1</div>User enters credentials</div>
+        <div class="step"><div class="step-number">2</div>System validates credentials</div>
+        <div class="step"><div class="step-number">3</div>User redirected based on role</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RELATED TOPICS -->
   <div class="card">
+    <h2>Related Topics</h2>
     <div class="nav">
-      <a href="dashboard.html">Dashboard Flow</a>
+      <a href="dashboard.html">Dashboard Overview</a>
+      <a href="roles.html">Role & Permissions</a>
       <a href="index.html" class="secondary">Back to Overview</a>
     </div>
   </div>
+
+  <footer>
+    © 2025 Corus HR • Internal Documentation
+  </footer>
 
 </div>
 

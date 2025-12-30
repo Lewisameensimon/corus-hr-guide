@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Corus HR – Travel</title>
+
+  <!-- Mermaid -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+    }
+
+    .page {
+      max-width: 1150px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    h1, h2 {
+      color: #0B3C5D;
+      margin-top: 0;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .breadcrumb {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .breadcrumb a {
+      color: #0078d4;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .breadcrumb span {
+      color: #888;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .layout .card {
+      margin-bottom: 0;
+    }
+
+    .stack > .card {
+      margin-bottom: 15px;
+    }
+
+    .section-note {
+      font-size: 13px;
+      color: #666;
+      margin-top: -10px;
+      margin-bottom: 15px;
+    }
+
+    .step {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .step-number {
+      min-width: 28px;
+      height: 28px;
+      background: #0B3C5D;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin: 40px 0 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header>
+    <div class="breadcrumb">
+      <a href="index.html">Overview</a> → <span>Travel</span>
+    </div>
+
+    <h1>Corus HR – Travel</h1>
+    <p>Manage employee travel requests, approvals, and expenses.</p>
+  </header>
+
+  <!-- META -->
+  <div class="meta">
+    <b>Module:</b> Travel |
+    <b>Audience:</b> Admin / Manager / Employee |
+    <b>Last Updated:</b> March 2025
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="card">
+    <h2>Overview</h2>
+    <p>
+      The Travel module enables employees to raise official travel requests,
+      obtain approvals, record trip details, and submit travel-related
+      expenses for reimbursement.
+    </p>
+  </div>
+
+  <!-- PREREQUISITES -->
+  <div class="layout">
+
+    <!-- LEFT: FLOW -->
+    <div class="card">
+      <h2>Travel – Prerequisites</h2>
+      <div class="section-note">(Admin Configuration)</div>
+
+      <div class="mermaid">
+flowchart TD
+  A[Employee Created]:::success --> B[Travel Policy Configured]:::input
+  B --> C[Eligible Expense Types Defined]:::input
+  C --> D[Approval Workflow Mapped]:::input
+  D --> E[Reimbursement Rules Set]:::success
+  E --> F[Travel Request Enabled]:::start
+
+  classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
+  classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
+  classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
+      </div>
+    </div>
+
+    <!-- RIGHT: STEPS -->
+    <div class="stack">
+      <div class="card">
+        <h2>Prerequisite Steps</h2>
+        <div class="step"><div class="step-number">1</div>Configure travel and expense policies</div>
+        <div class="step"><div class="step-number">2</div>Define approval hierarchy</div>
+        <div class="step"><div class="step-number">3</div>Enable reimbursement integration</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TRAVEL FLOW -->
+  <div class="layout">
+
+    <!-- LEFT: FLOW -->
+    <div class="card">
+      <h2>Travel Request Flow</h2>
+      <div class="section-note">(Employee → Manager → System)</div>
+
+      <div class="mermaid">
+flowchart TD
+  A[Employee Login]:::start --> B[Create Travel Request]:::input
+  B --> C[Enter Travel Details & Dates]:::input
+  C --> D{Policy Eligible?}:::decision
+
+  D -- Yes --> E[Request Submitted]:::input
+  E --> F[Manager Review]:::input
+
+  F --> X[Employee Cancels Travel]:::error
+  X --> Y[Request Closed]:::success
+
+  F --> G{Approved?}:::decision
+  G -- Yes --> H[Travel Approved]:::success
+  H --> I[System Notification Sent]:::success
+  I --> J[Travel Execution]:::success
+
+  G -- No --> K[Travel Rejected]:::error
+  K --> R[Capture Rejection Reason]:::input
+  R --> I
+
+  D -- No --> M[Policy Violation Message]:::error
+
+  classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
+  classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
+  classDef decision fill:#C9A227,color:#000000,stroke:#8E6F1F
+  classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
+  classDef error fill:#7A1F1F,color:#ffffff,stroke:#D4AF37
+      </div>
+    </div>
+
+    <!-- RIGHT: STEPS -->
+    <div class="stack">
+      <div class="card">
+        <h2>Step-by-Step</h2>
+        <div class="step"><div class="step-number">1</div>Employee submits travel request</div>
+        <div class="step"><div class="step-number">2</div>Manager reviews and approves</div>
+        <div class="step"><div class="step-number">3</div>Approved travel used for expense claims</div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    © 2025 Corus HR • Internal Documentation
+  </footer>
+
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "base",
+    themeVariables: {
+      primaryColor: "#0B3C5D",
+      primaryTextColor: "#ffffff",
+      primaryBorderColor: "#D4AF37",
+      lineColor: "#0B3C5D",
+      fontFamily: "Segoe UI, Arial",
+      fontSize: "14px"
+    }
+  });
+</script>
+
+</body>
+</html>

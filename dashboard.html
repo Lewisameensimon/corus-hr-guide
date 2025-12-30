@@ -20,24 +20,35 @@
       padding: 30px;
     }
 
-    header {
-      margin-bottom: 25px;
-    }
-
-    h1 {
+    h1, h2 {
       color: #0B3C5D;
-      margin: 0;
+      margin-top: 0;
     }
 
-    header p {
-      color: #666;
-      margin-top: 6px;
+    p {
+      font-size: 15px;
+      line-height: 1.6;
     }
 
     .breadcrumb {
       font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .breadcrumb a {
+      color: #0078d4;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .breadcrumb span {
       color: #888;
-      margin-bottom: 10px;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 25px;
     }
 
     .card {
@@ -48,21 +59,32 @@
       margin-bottom: 25px;
     }
 
-    h2 {
-      margin-top: 0;
-      color: #0B3C5D;
-    }
-
     .layout {
       display: grid;
       grid-template-columns: 1.1fr 1fr;
       gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .layout .card {
+      margin-bottom: 0;
+    }
+
+    .stack > .card {
+      margin-bottom: 15px;
+    }
+
+    .section-note {
+      font-size: 13px;
+      color: #666;
+      margin-top: -10px;
+      margin-bottom: 15px;
     }
 
     .step {
       display: flex;
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       line-height: 1.5;
     }
 
@@ -87,13 +109,14 @@
     }
 
     .nav a {
-      padding: 12px 22px;
+      padding: 10px 18px;
       background: #0B3C5D;
       color: #ffffff;
       text-decoration: none;
       border-radius: 10px;
       font-weight: bold;
       border: 2px solid #D4AF37;
+      font-size: 14px;
     }
 
     .nav a.secondary {
@@ -102,8 +125,11 @@
       border-color: #ccc;
     }
 
-    .nav a:hover {
-      opacity: 0.92;
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin: 40px 0 10px;
     }
 
     @media (max-width: 900px) {
@@ -119,10 +145,30 @@
 
   <!-- HEADER -->
   <header>
-    <div class="breadcrumb">Overview → Dashboard Flow</div>
-    <h1>Corus HR – Dashboard Process</h1>
-    <p>Centralized employee overview and quick access modules</p>
+    <div class="breadcrumb">
+      <a href="index.html">Overview</a> → <span>Dashboard</span>
+    </div>
+
+    <h1>Corus HR – Dashboard</h1>
+    <p>Centralized view of workforce insights, activities, and HR metrics.</p>
   </header>
+
+  <!-- META -->
+  <div class="meta">
+    <b>Module:</b> Dashboard |
+    <b>Audience:</b> Admin / HR / Manager |
+    <b>Last Updated:</b> Dec 2025
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="card">
+    <h2>Overview</h2>
+    <p>
+      The Dashboard provides a real-time snapshot of key HR information including
+      employee headcount, attendance, leave status, recruitment progress,
+      onboarding updates, and important announcements.
+    </p>
+  </div>
 
   <!-- MAIN CONTENT -->
   <div class="layout">
@@ -167,10 +213,14 @@ flowchart TD
 
   </div>
 
-  <!-- NAVIGATION -->
+  <!-- RELATED TOPICS -->
   <div class="card">
+    <h2>Related Topics</h2>
     <div class="nav">
-      <a href="management.html">Management Process</a>
+      <a href="payroll.html">Payroll & Final Settlement</a>
+      <a href="leave.html">Leave Encashment</a>
+      <a href="asset-management.html">Asset Clearance</a>
+      <a href="employee-profile.html" class="secondary">Employee Profile</a>
       <a href="index.html" class="secondary">Back to Overview</a>
     </div>
   </div>

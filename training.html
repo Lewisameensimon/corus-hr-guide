@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Corus HR – Training</title>
+
+  <!-- Mermaid -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+    }
+
+    .page {
+      max-width: 1150px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    h1, h2 {
+      color: #0B3C5D;
+      margin-top: 0;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .breadcrumb {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .breadcrumb a {
+      color: #0078d4;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .breadcrumb span {
+      color: #888;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .layout .card {
+      margin-bottom: 0;
+    }
+
+    .stack > .card {
+      margin-bottom: 15px;
+    }
+
+    .section-note {
+      font-size: 13px;
+      color: #666;
+      margin-top: -10px;
+      margin-bottom: 15px;
+    }
+
+    .step {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .step-number {
+      min-width: 28px;
+      height: 28px;
+      background: #0B3C5D;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+    }
+
+    .nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      padding: 10px 18px;
+      background: #0B3C5D;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+      font-size: 14px;
+    }
+
+    .nav a.secondary {
+      background: #f1f1f1;
+      color: #333;
+      border-color: #ccc;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin: 40px 0 10px;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header>
+    <div class="breadcrumb">
+      <a href="index.html">Overview</a> → <span>Training</span>
+    </div>
+
+    <h1>Corus HR – Training</h1>
+    <p>Plan, assign, and track employee training programs.</p>
+  </header>
+
+  <!-- META -->
+  <div class="meta">
+    <b>Module:</b> Training |
+    <b>Audience:</b> Admin / Manager / Employee |
+    <b>Last Updated:</b> Dec 2025
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="card">
+    <h2>Overview</h2>
+    <p>
+      The Training module helps organizations manage employee learning
+      through structured training programs, nominations, approvals,
+      attendance tracking, and completion records.
+    </p>
+  </div>
+
+  <!-- PREREQUISITES -->
+  <div class="layout">
+
+    <div class="card">
+      <h2>Training – Prerequisites</h2>
+      <div class="section-note">(Admin Configuration)</div>
+
+      <div class="mermaid">
+flowchart TD
+  A[Employee Created]:::success --> B[Training Categories Defined]:::input
+  B --> C[Training Programs Created]:::input
+  C --> D[Trainer / Vendor Mapped]:::input
+  D --> E[Nomination Workflow Configured]:::success
+  E --> F[Training Module Enabled]:::start
+
+  classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
+  classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
+  classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="card">
+        <h2>Prerequisite Steps</h2>
+        <div class="step"><div class="step-number">1</div>Create training categories and programs</div>
+        <div class="step"><div class="step-number">2</div>Map internal or external trainers</div>
+        <div class="step"><div class="step-number">3</div>Configure nomination and approval flow</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TRAINING FLOW -->
+  <div class="layout">
+
+    <div class="card">
+      <h2>Training Nomination Flow</h2>
+      <div class="section-note">(Employee / Manager → System)</div>
+
+      <div class="mermaid">
+flowchart TD
+  A[Training Published]:::start --> B[Employee / Manager Nomination]:::input
+  B --> C[Submit Nomination]:::input
+  C --> D[Manager Review]:::input
+
+  D --> X[Nomination Withdrawn]:::error
+  X --> Y[Nomination Closed]:::success
+
+  D --> E{Approved?}:::decision
+  E -- Yes --> F[Nomination Approved]:::success
+  F --> G[System Notification Sent]:::success
+  G --> H[Employee Attends Training]:::success
+  H --> I[Training Completed]:::success
+
+  E -- No --> J[Nomination Rejected]:::error
+  J --> K[Capture Rejection Reason]:::input
+  K --> G
+
+  classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
+  classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
+  classDef decision fill:#C9A227,color:#000000,stroke:#8E6F1F
+  classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
+  classDef error fill:#7A1F1F,color:#ffffff,stroke:#D4AF37
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="card">
+        <h2>Step-by-Step</h2>
+        <div class="step"><div class="step-number">1</div>Training program is published</div>
+        <div class="step"><div class="step-number">2</div>Nomination approved by manager</div>
+        <div class="step"><div class="step-number">3</div>Completion recorded for employee</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RELATED TOPICS -->
+  <div class="card">
+    <h2>Related Topics</h2>
+    <div class="nav">
+      <a href="performance.html">Performance</a>
+      <a href="goal-management.html">Goal Management</a>
+      <a href="competency.html">Competency Management</a>
+      <a href="employee-profile.html" class="secondary">Employee Profile</a>
+      <a href="index.html" class="secondary">Back to Overview</a>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Corus HR • Internal Documentation
+  </footer>
+
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "base",
+    themeVariables: {
+      primaryColor: "#0B3C5D",
+      primaryTextColor: "#ffffff",
+      primaryBorderColor: "#D4AF37",
+      lineColor: "#0B3C5D",
+      fontFamily: "Segoe UI, Arial",
+      fontSize: "14px"
+    }
+  });
+</script>
+
+</body>
+</html>

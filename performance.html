@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Corus HR – Performance Process</title>
+  <title>Corus HR – Performance</title>
 
   <!-- Mermaid -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
@@ -20,24 +20,35 @@
       padding: 30px;
     }
 
-    header {
-      margin-bottom: 25px;
-    }
-
-    h1 {
+    h1, h2 {
       color: #0B3C5D;
-      margin: 0;
+      margin-top: 0;
     }
 
-    header p {
-      color: #666;
-      margin-top: 6px;
+    p {
+      font-size: 15px;
+      line-height: 1.6;
     }
 
     .breadcrumb {
       font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .breadcrumb a {
+      color: #0078d4;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .breadcrumb span {
       color: #888;
-      margin-bottom: 10px;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 25px;
     }
 
     .card {
@@ -48,21 +59,32 @@
       margin-bottom: 25px;
     }
 
-    h2 {
-      margin-top: 0;
-      color: #0B3C5D;
-    }
-
     .layout {
       display: grid;
       grid-template-columns: 1.1fr 1fr;
       gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .layout .card {
+      margin-bottom: 0;
+    }
+
+    .stack > .card {
+      margin-bottom: 15px;
+    }
+
+    .section-note {
+      font-size: 13px;
+      color: #666;
+      margin-top: -10px;
+      margin-bottom: 15px;
     }
 
     .step {
       display: flex;
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       line-height: 1.5;
     }
 
@@ -87,13 +109,14 @@
     }
 
     .nav a {
-      padding: 12px 22px;
+      padding: 10px 18px;
       background: #0B3C5D;
       color: #ffffff;
       text-decoration: none;
       border-radius: 10px;
       font-weight: bold;
       border: 2px solid #D4AF37;
+      font-size: 14px;
     }
 
     .nav a.secondary {
@@ -102,8 +125,11 @@
       border-color: #ccc;
     }
 
-    .nav a:hover {
-      opacity: 0.92;
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin: 40px 0 10px;
     }
 
     @media (max-width: 900px) {
@@ -113,45 +139,95 @@
     }
   </style>
 </head>
+
 <body>
 
 <div class="page">
 
   <!-- HEADER -->
   <header>
-    <div class="breadcrumb">Overview → Performance Flow</div>
-    <h1>Corus HR – Performance Process</h1>
-    <p>Goal setting, review, and appraisal workflow</p>
+    <div class="breadcrumb">
+      <a href="index.html">Overview</a> → <span>Performance</span>
+    </div>
+
+    <h1>Corus HR – Performance</h1>
+    <p>Plan, track, and evaluate employee performance.</p>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- META -->
+  <div class="meta">
+    <b>Module:</b> Performance |
+    <b>Audience:</b> Admin / Manager / Employee |
+    <b>Last Updated:</b> Dec 2025
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="card">
+    <h2>Overview</h2>
+    <p>
+      The Performance module supports goal setting, self-reviews,
+      manager evaluations, and final performance ratings. It provides
+      a structured and transparent review process aligned with
+      organizational objectives.
+    </p>
+  </div>
+
+  <!-- PREREQUISITES -->
   <div class="layout">
 
-    <!-- FLOW -->
     <div class="card">
-      <h2>Performance Flow</h2>
+      <h2>Performance – Prerequisites</h2>
+      <div class="section-note">(Admin Configuration)</div>
 
       <div class="mermaid">
 flowchart TD
-  A[Employee Login]:::start --> B[View Performance Module]:::input
-  B --> C[Set Goals / KPIs]:::input
-  C --> D[Manager Reviews Goals]:::input
-  D --> E{Goals Approved?}:::decision
+  A[Employee Created]:::success --> B[Review Cycle Defined]:::input
+  B --> C[Goal Framework Configured]:::input
+  C --> D[Rating Scale Setup]:::input
+  D --> E[Review Workflow Mapped]:::success
+  E --> F[Performance Module Enabled]:::start
 
-  E -- Yes --> F[Goals Finalized]:::success
-  F --> G[Self Appraisal]:::input
-  G --> H[Manager Evaluation]:::input
-  H --> I{Final Rating Approved?}:::decision
+  classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
+  classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
+  classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
+      </div>
+    </div>
 
-  I -- Yes --> J[Performance Finalized]:::success
-  J --> K[Notify Employee]:::success
-  K --> L[Store Performance Record]:::success
+    <div class="stack">
+      <div class="card">
+        <h2>Prerequisite Steps</h2>
+        <div class="step"><div class="step-number">1</div>Create review cycles</div>
+        <div class="step"><div class="step-number">2</div>Define goals and KPIs</div>
+        <div class="step"><div class="step-number">3</div>Configure rating scales and workflow</div>
+      </div>
+    </div>
 
-  I -- No --> M[Rework / Feedback Loop]:::error
-  M --> G
+  </div>
 
-  E -- No --> N[Goal Revision Requested]:::error
-  N --> C
+  <!-- PERFORMANCE FLOW -->
+  <div class="layout">
+
+    <div class="card">
+      <h2>Performance Review Flow</h2>
+      <div class="section-note">(Employee → Manager → System)</div>
+
+      <div class="mermaid">
+flowchart TD
+  A[Review Cycle Starts]:::start --> B[Employee Self Review]:::input
+  B --> C[Submit Self Review]:::input
+  C --> D[Manager Review]:::input
+
+  D --> X[Employee Withdraws Review]:::error
+  X --> Y[Review Closed]:::success
+
+  D --> E{Approved?}:::decision
+  E -- Yes --> F[Final Rating Assigned]:::success
+  F --> G[System Notification Sent]:::success
+  G --> H[Performance Finalized]:::success
+
+  E -- No --> I[Changes Requested]:::error
+  I --> J[Employee Updates Review]:::input
+  J --> C
 
   classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
   classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
@@ -161,29 +237,33 @@ flowchart TD
       </div>
     </div>
 
-    <!-- EXPLANATION -->
-    <div class="card">
-      <h2>Step-by-Step Explanation</h2>
-
-      <div class="step"><div class="step-number">1</div>Employee logs in to Corus HR.</div>
-      <div class="step"><div class="step-number">2</div>Employee opens Performance module.</div>
-      <div class="step"><div class="step-number">3</div>Employee sets goals and KPIs.</div>
-      <div class="step"><div class="step-number">4</div>Manager reviews and approves goals.</div>
-      <div class="step"><div class="step-number">5</div>Employee submits self appraisal.</div>
-      <div class="step"><div class="step-number">6</div>Manager evaluates performance.</div>
-      <div class="step"><div class="step-number">7</div>Final rating is approved.</div>
-      <div class="step"><div class="step-number">8</div>Employee receives notification and records are stored.</div>
+    <div class="stack">
+      <div class="card">
+        <h2>Step-by-Step</h2>
+        <div class="step"><div class="step-number">1</div>Employee completes self-review</div>
+        <div class="step"><div class="step-number">2</div>Manager evaluates and rates</div>
+        <div class="step"><div class="step-number">3</div>Final ratings locked for reporting</div>
+      </div>
     </div>
 
   </div>
 
-  <!-- NAVIGATION -->
+  <!-- RELATED TOPICS -->
   <div class="card">
+    <h2>Related Topics</h2>
     <div class="nav">
-      <a href="performance_roles.html">Performance Role Based Flow</a>
+      <a href="goal-management.html">Goal Management</a>
+      <a href="probation-review.html">Probation & Confirmation</a>
+      <a href="learning-development.html">Learning & Development</a>
+      <a href="compensation.html">Compensation & Appraisal</a>
+      <a href="employee-profile.html" class="secondary">Employee Profile</a>
       <a href="index.html" class="secondary">Back to Overview</a>
     </div>
   </div>
+
+  <footer>
+    © 2025 Corus HR • Internal Documentation
+  </footer>
 
 </div>
 

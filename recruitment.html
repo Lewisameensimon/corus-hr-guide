@@ -20,24 +20,35 @@
       padding: 30px;
     }
 
-    header {
-      margin-bottom: 25px;
-    }
-
-    h1 {
+    h1, h2 {
       color: #0B3C5D;
-      margin: 0;
+      margin-top: 0;
     }
 
-    header p {
-      color: #666;
-      margin-top: 6px;
+    p {
+      font-size: 15px;
+      line-height: 1.6;
     }
 
     .breadcrumb {
       font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .breadcrumb a {
+      color: #0078d4;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .breadcrumb span {
       color: #888;
-      margin-bottom: 10px;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 25px;
     }
 
     .card {
@@ -48,21 +59,32 @@
       margin-bottom: 25px;
     }
 
-    h2 {
-      margin-top: 0;
-      color: #0B3C5D;
-    }
-
     .layout {
       display: grid;
       grid-template-columns: 1.1fr 1fr;
       gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .layout .card {
+      margin-bottom: 0;
+    }
+
+    .stack > .card {
+      margin-bottom: 15px;
+    }
+
+    .section-note {
+      font-size: 13px;
+      color: #666;
+      margin-top: -10px;
+      margin-bottom: 15px;
     }
 
     .step {
       display: flex;
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       line-height: 1.5;
     }
 
@@ -87,13 +109,14 @@
     }
 
     .nav a {
-      padding: 12px 22px;
+      padding: 10px 18px;
       background: #0B3C5D;
       color: #ffffff;
       text-decoration: none;
       border-radius: 10px;
       font-weight: bold;
       border: 2px solid #D4AF37;
+      font-size: 14px;
     }
 
     .nav a.secondary {
@@ -102,8 +125,11 @@
       border-color: #ccc;
     }
 
-    .nav a:hover {
-      opacity: 0.92;
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin: 40px 0 10px;
     }
 
     @media (max-width: 900px) {
@@ -113,79 +139,162 @@
     }
   </style>
 </head>
+
 <body>
 
 <div class="page">
 
   <!-- HEADER -->
   <header>
-    <div class="breadcrumb">Overview → Recruitment Flow</div>
+    <div class="breadcrumb">
+      <a href="index.html">Overview</a> → <span>Recruitment Process</span>
+    </div>
+
     <h1>Corus HR – Recruitment Process</h1>
-    <p>Hiring request, interview, and onboarding workflow</p>
+    <p>End-to-end process for hiring employees from manpower planning to employee creation.</p>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- META -->
+  <div class="meta">
+    <b>Module:</b> Recruitment |
+    <b>Audience:</b> Admin / HR / Hiring Manager |
+    <b>Last Updated:</b> March 2025
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="card">
+    <h2>Overview</h2>
+    <p>
+      The Recruitment module manages the complete hiring lifecycle including recruitment budgeting,
+      resource planning, requisition requests, resume shortlisting, interview scheduling,
+      interview feedback, candidate selection, onboarding, orientation, and final employee creation
+      in the system.
+    </p>
+  </div>
+
+  <!-- PREREQUISITES -->
   <div class="layout">
 
-    <!-- FLOW -->
+    <!-- LEFT: FLOW -->
     <div class="card">
-      <h2>Recruitment Flow</h2>
+      <h2>Recruitment – Prerequisites</h2>
+      <div class="section-note">(Admin & HR Configuration)</div>
 
       <div class="mermaid">
 flowchart TD
-  A[HR / Hiring Manager Login]:::start --> B[Create Job Requisition]:::input
-  B --> C[Approval from Management]:::input
-  C --> D{Approved?}:::decision
+  A[Recruitment Budget Defined]:::input --> B[Manpower / Resource Planning]:::input
+  B --> C[Job Description Created]:::input
+  C --> D[Interview Feedback Factors Configured]:::input
+  D --> E[Recruitment Workflow Enabled]:::success
 
-  D -- Yes --> E[Publish Job Posting]:::input
-  E --> F[Receive Applications]:::input
-  F --> G[Resume Screening]:::input
-  G --> H{Shortlisted?}:::decision
+  classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
+  classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
+      </div>
+    </div>
 
-  H -- Yes --> I[Schedule Interviews]:::input
-  I --> J[Interview Evaluation]:::input
-  J --> K{Selected?}:::decision
+    <!-- RIGHT: STACK -->
+    <div class="stack">
 
-  K -- Yes --> L[Offer Letter Issued]:::success
-  L --> M[Candidate Accepts Offer]:::success
-  M --> N[Initiate Onboarding]:::success
+      <div class="card">
+        <h2>Prerequisite Steps</h2>
+        <div class="step"><div class="step-number">1</div>Define recruitment budget for departments and roles</div>
+        <div class="step"><div class="step-number">2</div>Complete resource and manpower planning</div>
+        <div class="step"><div class="step-number">3</div>Create job descriptions and interview evaluation factors</div>
+      </div>
 
-  K -- No --> O[Candidate Rejected]:::error
-  O --> P[Notify Candidate]:::error
+    </div>
 
-  D -- No --> Q[Requisition Rejected]:::error
+  </div>
 
+  <!-- SECTION WITH FLOW + STEPS -->
+  <div class="layout">
+
+    <!-- LEFT: FLOW -->
+    <div class="card">
+      <h2>Recruitment Process Flow</h2>
+      <div class="section-note">(HR & Hiring Manager)</div>
+
+      <div class="mermaid">
+flowchart TD
+  A[Recruitment Request Raised]:::start --> B[Recruitment Details Approved]:::input
+  B --> C[Resume Collection & Selection]:::input
+  C --> D[Interview Date Scheduled]:::input
+  D --> E[Interview Conducted]:::input
+  E --> F[Interview Feedback Updated]:::input
+  F --> G{Candidate Selected?}:::decision
+
+  G -- Yes --> H[Offer & Onboarding]:::success
+  H --> I[Employee Orientation]:::input
+  I --> J[Employee Creation]:::success
+
+  G -- No --> C
+
+  %% STYLE DEFINITIONS
   classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
   classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
   classDef decision fill:#C9A227,color:#000000,stroke:#8E6F1F
   classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
-  classDef error fill:#7A1F1F,color:#ffffff,stroke:#D4AF37
       </div>
     </div>
 
-    <!-- EXPLANATION -->
-    <div class="card">
-      <h2>Step-by-Step Explanation</h2>
+    <!-- RIGHT: STEPS -->
+    <div class="stack">
+      <div class="card">
+        <h2>Step-by-Step</h2>
 
-      <div class="step"><div class="step-number">1</div>HR or Hiring Manager logs in.</div>
-      <div class="step"><div class="step-number">2</div>Create job requisition.</div>
-      <div class="step"><div class="step-number">3</div>Management reviews and approves.</div>
-      <div class="step"><div class="step-number">4</div>Job is published to portals.</div>
-      <div class="step"><div class="step-number">5</div>Applications are received.</div>
-      <div class="step"><div class="step-number">6</div>Resumes are screened.</div>
-      <div class="step"><div class="step-number">7</div>Interviews are conducted.</div>
-      <div class="step"><div class="step-number">8</div>Offer is issued and onboarding starts.</div>
+        <div class="step">
+          <div class="step-number">1</div>
+          Recruitment request is raised with required details such as position, department, budget, and timeline.
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          HR reviews and approves the requested recruitment details based on budget and planning.
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          Resumes are collected, screened, and shortlisted as per job description criteria.
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          Interview dates are scheduled and communicated to candidates and interview panel.
+        </div>
+
+        <div class="step">
+          <div class="step-number">5</div>
+          Interviews are conducted and feedback is recorded using predefined feedback factors.
+        </div>
+
+        <div class="step">
+          <div class="step-number">6</div>
+          Selected candidate is finalized and onboarding process is initiated.
+        </div>
+
+        <div class="step">
+          <div class="step-number">7</div>
+          Employee orientation is completed and employee record is created in the system.
+        </div>
+      </div>
     </div>
 
   </div>
 
-  <!-- NAVIGATION -->
+  <!-- RELATED TOPICS -->
   <div class="card">
+    <h2>Related Topics</h2>
     <div class="nav">
-      <a href="performance.html">Performance Flow</a>
+      <a href="#">Recruitment Budget</a>
+      <a href="#">Onboarding Process</a>
+      <a href="#">Employee Master</a>
       <a href="index.html" class="secondary">Back to Overview</a>
     </div>
   </div>
+
+  <footer>
+    © 2025 Corus HR • Internal Documentation
+  </footer>
 
 </div>
 

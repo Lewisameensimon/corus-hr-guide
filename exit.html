@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Corus HR – Exit Process</title>
+
+  <!-- Mermaid -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+    }
+
+    .page {
+      max-width: 1150px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    h1, h2 {
+      color: #0B3C5D;
+      margin-top: 0;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .breadcrumb {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .breadcrumb a {
+      color: #0078d4;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .breadcrumb span {
+      color: #888;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .layout .card {
+      margin-bottom: 0;
+    }
+
+    .stack > .card {
+      margin-bottom: 15px;
+    }
+
+    .section-note {
+      font-size: 13px;
+      color: #666;
+      margin-top: -10px;
+      margin-bottom: 15px;
+    }
+
+    .step {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .step-number {
+      min-width: 28px;
+      height: 28px;
+      background: #0B3C5D;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+    }
+
+    .nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      padding: 10px 18px;
+      background: #0B3C5D;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+      font-size: 14px;
+    }
+
+    .nav a.secondary {
+      background: #f1f1f1;
+      color: #333;
+      border-color: #ccc;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin: 40px 0 10px;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header>
+    <div class="breadcrumb">
+      <a href="index.html">Overview</a> → <span>Exit Process</span>
+    </div>
+
+    <h1>Corus HR – Exit Process</h1>
+    <p>Manage employee separation and final settlement.</p>
+  </header>
+
+  <!-- META -->
+  <div class="meta">
+    <b>Module:</b> Exit Process |
+    <b>Audience:</b> Admin / Manager / Employee |
+    <b>Last Updated:</b> Dec 2025
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="card">
+    <h2>Overview</h2>
+    <p>
+      The Exit Process module manages employee resignation, approvals,
+      notice period tracking, clearance activities, and final settlement
+      to ensure a smooth and compliant separation.
+    </p>
+  </div>
+
+  <!-- PREREQUISITES -->
+  <div class="layout">
+
+    <div class="card">
+      <h2>Exit Process – Prerequisites</h2>
+      <div class="section-note">(Admin Configuration)</div>
+
+      <div class="mermaid">
+flowchart TD
+  A[Employee Active]:::success --> B[Exit Reasons Configured]:::input
+  B --> C[Notice Period Rules Defined]:::input
+  C --> D[Clearance Departments Mapped]:::input
+  D --> E[Final Settlement Rules Set]:::success
+  E --> F[Exit Process Enabled]:::start
+
+  classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
+  classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
+  classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="card">
+        <h2>Prerequisite Steps</h2>
+        <div class="step"><div class="step-number">1</div>Configure exit reasons and notice rules</div>
+        <div class="step"><div class="step-number">2</div>Map clearance departments</div>
+        <div class="step"><div class="step-number">3</div>Define final settlement components</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- EXIT FLOW -->
+  <div class="layout">
+
+    <div class="card">
+      <h2>Exit Process Flow</h2>
+      <div class="section-note">(Employee → Manager → HR → System)</div>
+
+      <div class="mermaid">
+flowchart TD
+  A[Employee Submits Resignation]:::start --> B[Select Exit Reason & Last Working Day]:::input
+  B --> C[Manager Review]:::input
+
+  C --> X[Employee Withdraws Resignation]:::error
+  X --> Y[Exit Request Closed]:::success
+
+  C --> D{Approved?}:::decision
+  D -- Yes --> E[Notice Period Tracking]:::success
+  E --> F[Clearance Initiated]:::input
+  F --> G[Department Clearances Completed]:::success
+  G --> H[Final Settlement Processed]:::success
+  H --> I[Employee Marked Inactive]:::success
+
+  D -- No --> J[Resignation Rejected]:::error
+  J --> K[Capture Rejection Reason]:::input
+  K --> Y
+
+  classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
+  classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
+  classDef decision fill:#C9A227,color:#000000,stroke:#8E6F1F
+  classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
+  classDef error fill:#7A1F1F,color:#ffffff,stroke:#D4AF37
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="card">
+        <h2>Step-by-Step</h2>
+        <div class="step"><div class="step-number">1</div>Employee submits resignation</div>
+        <div class="step"><div class="step-number">2</div>Clearance and notice period tracked</div>
+        <div class="step"><div class="step-number">3</div>Final settlement and exit closure</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RELATED TOPICS -->
+  <div class="card">
+    <h2>Related Topics</h2>
+    <div class="nav">
+      <a href="payroll.html">Payroll & Final Settlement</a>
+      <a href="leave.html">Leave Encashment</a>
+      <a href="asset-management.html">Asset Clearance</a>
+      <a href="employee-profile.html" class="secondary">Employee Profile</a>
+      <a href="index.html" class="secondary">Back to Overview</a>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Corus HR • Internal Documentation
+  </footer>
+
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "base",
+    themeVariables: {
+      primaryColor: "#0B3C5D",
+      primaryTextColor: "#ffffff",
+      primaryBorderColor: "#D4AF37",
+      lineColor: "#0B3C5D",
+      fontFamily: "Segoe UI, Arial",
+      fontSize: "14px"
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Corus HR – Loan Management</title>
+
+  <!-- Mermaid -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+    }
+
+    .page {
+      max-width: 1150px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    h1, h2 {
+      color: #0B3C5D;
+      margin-top: 0;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .breadcrumb {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .breadcrumb a {
+      color: #0078d4;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .breadcrumb span {
+      color: #888;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .layout .card {
+      margin-bottom: 0;
+    }
+
+    .stack > .card {
+      margin-bottom: 15px;
+    }
+
+    .section-note {
+      font-size: 13px;
+      color: #666;
+      margin-top: -10px;
+      margin-bottom: 15px;
+    }
+
+    .step {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .step-number {
+      min-width: 28px;
+      height: 28px;
+      background: #0B3C5D;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+    }
+
+    .nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      padding: 10px 18px;
+      background: #0B3C5D;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+      font-size: 14px;
+    }
+
+    .nav a.secondary {
+      background: #f1f1f1;
+      color: #333;
+      border-color: #ccc;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin: 40px 0 10px;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header>
+    <div class="breadcrumb">
+      <a href="index.html">Overview</a> → <span>Loan Management</span>
+    </div>
+
+    <h1>Corus HR – Loan Management</h1>
+    <p>Manage employee loan requests, approvals, and repayments.</p>
+  </header>
+
+  <!-- META -->
+  <div class="meta">
+    <b>Module:</b> Loan Management |
+    <b>Audience:</b> Admin / Manager / Employee |
+    <b>Last Updated:</b> March 2025
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="card">
+    <h2>Overview</h2>
+    <p>
+      The Loan Management module allows employees to apply for loans,
+      managers to review and approve requests, and the system to track
+      repayments through payroll deductions.
+    </p>
+  </div>
+
+  <!-- PREREQUISITES -->
+  <div class="layout">
+
+    <!-- LEFT: FLOW -->
+    <div class="card">
+      <h2>Loan – Prerequisites</h2>
+      <div class="section-note">(Admin Configuration)</div>
+
+      <div class="mermaid">
+flowchart TD
+  A[Employee Created]:::success --> B[Loan Types Configured]:::input
+  B --> C[Eligibility Rules Defined]:::input
+  C --> D[Interest & Repayment Setup]:::input
+  D --> E[Payroll Mapping Completed]:::success
+  E --> F[Loan Application Enabled]:::start
+
+  classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
+  classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
+  classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
+      </div>
+    </div>
+
+    <!-- RIGHT: STEPS -->
+    <div class="stack">
+      <div class="card">
+        <h2>Prerequisite Steps</h2>
+        <div class="step"><div class="step-number">1</div>Create employee records</div>
+        <div class="step"><div class="step-number">2</div>Configure loan types and limits</div>
+        <div class="step"><div class="step-number">3</div>Map loan recovery to payroll</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LOAN FLOW -->
+  <div class="layout">
+
+    <!-- LEFT: FLOW -->
+    <div class="card">
+      <h2>Loan Request Flow</h2>
+      <div class="section-note">(Employee → Manager → System)</div>
+
+      <div class="mermaid">
+flowchart TD
+  A[Employee Login]:::start --> B[Submit Loan Request]:::input
+  B --> C[Select Loan Type & Amount]:::input
+  C --> D{Eligible for Loan?}:::decision
+
+  D -- Yes --> E[Request Submitted]:::input
+  E --> F[Manager Review]:::input
+
+  F --> X[Employee Cancels Request]:::error
+  X --> Y[Request Closed]:::success
+
+  F --> G{Approved?}:::decision
+  G -- Yes --> H[Loan Approved]:::success
+  H --> I[System Notification Sent]:::success
+  I --> J[Loan Scheduled for Payroll Deduction]:::success
+
+  G -- No --> K[Loan Rejected]:::error
+  K --> R[Capture Rejection Reason]:::input
+  R --> I
+
+  D -- No --> M[Eligibility Failed Message]:::error
+
+  classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
+  classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
+  classDef decision fill:#C9A227,color:#000000,stroke:#8E6F1F
+  classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
+  classDef error fill:#7A1F1F,color:#ffffff,stroke:#D4AF37
+      </div>
+    </div>
+
+    <!-- RIGHT: STEPS -->
+    <div class="stack">
+      <div class="card">
+        <h2>Step-by-Step</h2>
+        <div class="step"><div class="step-number">1</div>Employee submits loan request</div>
+        <div class="step"><div class="step-number">2</div>Manager reviews and decides</div>
+        <div class="step"><div class="step-number">3</div>Approved loans auto-linked to payroll</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RELATED TOPICS -->
+  <div class="card">
+    <h2>Related Topics</h2>
+    <div class="nav">
+      <a href="#">Payroll Processing</a>
+      <a href="#">Employee Self Service</a>
+      <a href="index.html" class="secondary">Back to Overview</a>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Corus HR • Internal Documentation
+  </footer>
+
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "base",
+    themeVariables: {
+      primaryColor: "#0B3C5D",
+      primaryTextColor: "#ffffff",
+      primaryBorderColor: "#D4AF37",
+      lineColor: "#0B3C5D",
+      fontFamily: "Segoe UI, Arial",
+      fontSize: "14px"
+    }
+  });
+</script>
+
+</body>
+</html>

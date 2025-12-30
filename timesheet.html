@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Corus HR – Timesheet</title>
+
+  <!-- Mermaid -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+    }
+
+    .page {
+      max-width: 1150px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    h1, h2 {
+      color: #0B3C5D;
+      margin-top: 0;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .breadcrumb {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .breadcrumb a {
+      color: #0078d4;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .breadcrumb span {
+      color: #888;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .layout .card {
+      margin-bottom: 0;
+    }
+
+    .stack > .card {
+      margin-bottom: 15px;
+    }
+
+    .section-note {
+      font-size: 13px;
+      color: #666;
+      margin-top: -10px;
+      margin-bottom: 15px;
+    }
+
+    .step {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .step-number {
+      min-width: 28px;
+      height: 28px;
+      background: #0B3C5D;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+    }
+
+    .nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      padding: 10px 18px;
+      background: #0B3C5D;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      border: 2px solid #D4AF37;
+      font-size: 14px;
+    }
+
+    .nav a.secondary {
+      background: #f1f1f1;
+      color: #333;
+      border-color: #ccc;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin: 40px 0 10px;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header>
+    <div class="breadcrumb">
+      <a href="index.html">Overview</a> → <span>Timesheet</span>
+    </div>
+
+    <h1>Corus HR – Timesheet</h1>
+    <p>Capture, submit, and approve employee working hours.</p>
+  </header>
+
+  <!-- META -->
+  <div class="meta">
+    <b>Module:</b> Timesheet |
+    <b>Audience:</b> Admin / Manager / Employee |
+    <b>Last Updated:</b> March 2025
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="card">
+    <h2>Overview</h2>
+    <p>
+      The Timesheet module enables employees to record daily working hours,
+      submit them for approval, and allows managers to review, approve, or
+      reject submitted timesheets. Approved timesheets can be used for
+      payroll, billing, and productivity reporting.
+    </p>
+  </div>
+
+  <!-- PREREQUISITES -->
+  <div class="layout">
+
+    <!-- LEFT: FLOW -->
+    <div class="card">
+      <h2>Timesheet – Prerequisites</h2>
+      <div class="section-note">(Admin Configuration)</div>
+
+      <div class="mermaid">
+flowchart TD
+  A[Employee Created]:::success --> B[Work Calendar Configured]:::input
+  B --> C[Project / Cost Center Assigned]:::input
+  C --> D[Timesheet Policy Defined]:::input
+  D --> E[Approval Hierarchy Mapped]:::success
+  E --> F[Timesheet Entry Enabled]:::start
+
+  classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
+  classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
+  classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
+      </div>
+    </div>
+
+    <!-- RIGHT: STACK -->
+    <div class="stack">
+      <div class="card">
+        <h2>Prerequisite Steps</h2>
+        <div class="step"><div class="step-number">1</div>Configure work calendars and holidays</div>
+        <div class="step"><div class="step-number">2</div>Assign projects or cost centers</div>
+        <div class="step"><div class="step-number">3</div>Define approval workflow</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TIMESHEET FLOW -->
+  <div class="layout">
+
+    <!-- LEFT: FLOW -->
+    <div class="card">
+      <h2>Timesheet Submission Flow</h2>
+      <div class="section-note">(Employee → Manager → System)</div>
+
+      <div class="mermaid">
+flowchart TD
+  A[Employee Login]:::start --> B[Enter Daily Hours]:::input
+  B --> C[Select Project / Task]:::input
+  C --> D{Submit Timesheet?}:::decision
+
+  D -- Yes --> E[Timesheet Submitted]:::input
+  E --> F[Manager Review]:::input
+
+  F --> X[Employee Withdraws Submission]:::error
+  X --> Y[Timesheet Closed]:::success
+
+  F --> G{Approved?}:::decision
+  G -- Yes --> H[Timesheet Approved]:::success
+  H --> I[System Notification Sent]:::success
+  I --> J[Available for Payroll / Billing]:::success
+
+  G -- No --> K[Timesheet Rejected]:::error
+  K --> R[Capture Rejection Reason]:::input
+  R --> I
+
+  D -- No --> M[Saved as Draft]:::input
+
+  classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
+  classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
+  classDef decision fill:#C9A227,color:#000000,stroke:#8E6F1F
+  classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
+  classDef error fill:#7A1F1F,color:#ffffff,stroke:#D4AF37
+      </div>
+    </div>
+
+    <!-- RIGHT: STEPS -->
+    <div class="stack">
+      <div class="card">
+        <h2>Step-by-Step</h2>
+        <div class="step"><div class="step-number">1</div>Employee enters daily work hours</div>
+        <div class="step"><div class="step-number">2</div>Manager reviews and approves timesheet</div>
+        <div class="step"><div class="step-number">3</div>Approved data flows to payroll or billing</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RELATED TOPICS -->
+  <div class="card">
+    <h2>Related Topics</h2>
+    <div class="nav">
+      <a href="#">Payroll Processing</a>
+      <a href="#">Project Management</a>
+      <a href="index.html" class="secondary">Back to Overview</a>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Corus HR • Internal Documentation
+  </footer>
+
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: "base",
+    themeVariables: {
+      primaryColor: "#0B3C5D",
+      primaryTextColor: "#ffffff",
+      primaryBorderColor: "#D4AF37",
+      lineColor: "#0B3C5D",
+      fontFamily: "Segoe UI, Arial",
+      fontSize: "14px"
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -213,11 +213,26 @@ flowchart TD
 
       <div class="mermaid">
 flowchart TD
-  A[User Opens Login Page] --> B[Enter Username & Password]
-  B --> C{Credentials Valid?}
-  C -- Yes --> D[Authentication Success]
-  D --> E[Redirect to Dashboard]
-  C -- No --> F[Error Message Displayed]
+  A[User Opens Login Page]:::start --> B[Enter Username & Password]:::input
+  B --> C[Click Login]:::input
+  C --> D{Credentials Valid?}:::decision
+
+  D -- Yes --> E[Authentication Success]:::success
+  E --> F[Load User Role & Permissions]:::input
+  F --> G[Redirect to Dashboard]:::success
+
+  D -- No --> H[Invalid Credentials Message]:::error
+  H --> I[Click Forgot Password]:::input
+  I --> J[Enter Registered Email]:::input
+  J --> K[Reset Link Sent via Email]:::success
+  K --> L[User Resets Password]:::input
+  L --> A
+
+  classDef start fill:#0B3C5D,color:#ffffff,stroke:#D4AF37,stroke-width:2px
+  classDef input fill:#1C5D8B,color:#ffffff,stroke:#D4AF37
+  classDef decision fill:#C9A227,color:#000000,stroke:#8E6F1F
+  classDef success fill:#1F7A5A,color:#ffffff,stroke:#D4AF37
+  classDef error fill:#7A1F1F,color:#ffffff,stroke:#D4AF37
       </div>
     </div>
 
